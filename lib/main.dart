@@ -1,115 +1,506 @@
+// import 'package:flutter/material.dart';
+//
+// void main() {
+//   runApp(const MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key}) : super(key: key);
+//
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Flutter Demo',
+//       theme: ThemeData(
+//         // This is the theme of your application.
+//         //
+//         // Try running your application with "flutter run". You'll see the
+//         // application has a blue toolbar. Then, without quitting the app, try
+//         // changing the primarySwatch below to Colors.green and then invoke
+//         // "hot reload" (press "r" in the console where you ran "flutter run",
+//         // or simply save your changes to "hot reload" in a Flutter IDE).
+//         // Notice that the counter didn't reset back to zero; the application
+//         // is not restarted.
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: const MyHomePage(title: 'Flutter Demo Home Page'),
+//     );
+//   }
+// }
+//
+// class MyHomePage extends StatefulWidget {
+//   const MyHomePage({Key? key,  required this.title}) : super(key: key);
+//
+//
+//   final String title;
+//
+//   @override
+//   State<MyHomePage> createState() => _MyHomePageState();
+// }
+//
+// class _MyHomePageState extends State<MyHomePage> {
+//   int _counter = 0;
+//
+//   void _incrementCounter() {
+//     setState(() {
+//       // This call to setState tells the Flutter framework that something has
+//       // changed in this State, which causes it to rerun the build method below
+//       // so that the display can reflect the updated values. If we changed
+//       // _counter without calling setState(), then the build method would not be
+//       // called again, and so nothing would appear to happen.
+//       _counter++;
+//     });
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     // This method is rerun every time setState is called, for instance as done
+//     // by the _incrementCounter method above.
+//     //
+//     // The Flutter framework has been optimized to make rerunning build methods
+//     // fast, so that you can just rebuild anything that needs updating rather
+//     // than having to individually change instances of widgets.
+//     return Scaffold(
+//       appBar: AppBar(
+//         // Here we take the value from the MyHomePage object that was created by
+//         // the App.build method, and use it to set our appbar title.
+//         title: Text(widget.title),
+//       ),
+//       body: Center(
+//         // Center is a layout widget. It takes a single child and positions it
+//         // in the middle of the parent.
+//         child: Column(
+//           // Column is also a layout widget. It takes a list of children and
+//           // arranges them vertically. By default, it sizes itself to fit its
+//           // children horizontally, and tries to be as tall as its parent.
+//           //
+//           // Invoke "debug painting" (press "p" in the console, choose the
+//           // "Toggle Debug Paint" action from the Flutter Inspector in Android
+//           // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+//           // to see the wireframe for each widget.
+//           //
+//           // Column has various properties to control how it sizes itself and
+//           // how it positions its children. Here we use mainAxisAlignment to
+//           // center the children vertically; the main axis here is the vertical
+//           // axis because Columns are vertical (the cross axis would be
+//           // horizontal).
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget>[
+//             const Text(
+//               'You have pushed the button this many times:',
+//             ),
+//             Text(
+//               '$_counter',
+//               style: Theme.of(context).textTheme.headlineMedium,
+//             ),
+//           ],
+//         ),
+//       ),
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: _incrementCounter,
+//         tooltip: 'Increment',
+//         child: const Icon(Icons.add),
+//       ), // This trailing comma makes auto-formatting nicer for build methods.
+//     );
+//   }
+// }
+
+import 'dart:io';
+import 'package:idigital_costumer/Helper/Color.dart';
+import 'package:idigital_costumer/Helper/Constant.dart';
+import 'package:idigital_costumer/Provider/CartProvider.dart';
+import 'package:idigital_costumer/Provider/CategoryProvider.dart';
+import 'package:idigital_costumer/Provider/Favourite/UpdateFavProvider.dart';
+import 'package:idigital_costumer/Provider/NotificationProvider.dart';
+import 'package:idigital_costumer/Provider/ProductProvider.dart';
+import 'package:idigital_costumer/Provider/Search/SearchProvider.dart';
+import 'package:idigital_costumer/Provider/UserProvider.dart';
+import 'package:idigital_costumer/Provider/explore_provider.dart';
+import 'package:idigital_costumer/Provider/authenticationProvider.dart';
+import 'package:idigital_costumer/Provider/myWalletProvider.dart';
+import 'package:idigital_costumer/Provider/paymentProvider.dart';
+import 'package:idigital_costumer/Screen/SplashScreen/Splash.dart';
+import 'package:idigital_costumer/Screen/Language/languageSettings.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'Helper/String.dart';
+import 'Screen/Language/Demo_Localization.dart';
+import 'Screen/PushNotification/PushNotificationService.dart';
+import 'Provider/FaqsProvider.dart';
+import 'Provider/Favourite/FavoriteProvider.dart';
+import 'Provider/ManageAddressProvider.dart';
+import 'Provider/Order/OrderProvider.dart';
+import 'Provider/Order/UpdateOrderProvider.dart';
+import 'Provider/addressProvider.dart';
+import 'Provider/chatProvider.dart';
+import 'Provider/customerSupportProvider.dart';
+import 'Provider/homePageProvider.dart';
+import 'Provider/productDetailProvider.dart';
+import 'Provider/ReviewGallleryProvider.dart';
+import 'Provider/ReviewPreviewProvider.dart';
+import 'Provider/Theme.dart';
+import 'Provider/SettingProvider.dart';
+import 'Provider/faqProvider.dart';
+import 'Provider/productListProvider.dart';
+import 'Provider/productPrevciewProvider.dart';
+import 'Provider/promoCodeProvider.dart';
+import 'Provider/pushNotificationProvider.dart';
+import 'Provider/sellerDetailProvider.dart';
+import 'Provider/systemProvider.dart';
+import 'Provider/userWalletProvider.dart';
+import 'Provider/writeReviewProvider.dart';
+import 'Screen/Dashboard/Dashboard.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+  if (Firebase.apps.isNotEmpty) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
     );
+  } else {
+    await Firebase.initializeApp();
   }
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
+  FirebaseMessaging.instance.getInitialMessage();
+  initializedDownload();
+
+  FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  HttpOverrides.global = MyHttpOverrides();
+
+  runApp(
+    ChangeNotifierProvider<ThemeNotifier>(
+      create: (BuildContext context) {
+        String? theme = prefs.getString(APP_THEME);
+
+        if (theme == DARK) {
+          ISDARK = 'true';
+        } else if (theme == LIGHT) {
+          ISDARK = 'false';
+        }
+
+        if (theme == null || theme == '' || theme == DEFAULT_SYSTEM) {
+          prefs.setString(APP_THEME, DEFAULT_SYSTEM);
+          var brightness = SchedulerBinding.instance.window.platformBrightness;
+          ISDARK = (brightness == Brightness.dark).toString();
+
+          return ThemeNotifier(ThemeMode.system);
+        }
+
+        return ThemeNotifier(theme == LIGHT ? ThemeMode.light : ThemeMode.dark);
+      },
+      child: MyApp(sharedPreferences: prefs),
+    ),
+  );
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+Future<void> initializedDownload() async {
+  await FlutterDownloader.initialize(debug: false);
+}
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
+final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =
+GlobalKey<ScaffoldMessengerState>();
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+class MyApp extends StatefulWidget {
+  late SharedPreferences sharedPreferences;
 
-  final String title;
+  MyApp({Key? key, required this.sharedPreferences}) : super(key: key);
+
+  static void setLocale(BuildContext context, Locale newLocale) {
+    _MyAppState state = context.findAncestorStateOfType<_MyAppState>()!;
+    state.setLocale(newLocale);
+  }
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _MyAppState createState() => _MyAppState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _MyAppState extends State<MyApp> {
+  Locale? _locale;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  setLocale(Locale locale) {
+    if (mounted) {
+      setState(
+            () {
+          _locale = locale;
+        },
+      );
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    getLocale().then(
+          (locale) {
+        if (mounted) {
+          setState(
+                () {
+              _locale = locale;
+            },
+          );
+        }
+      },
+    );
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+    if (_locale == null) {
+      return const Center(
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color?>(
+            colors.primary,
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+      );
+    } else {
+      return MultiProvider(
+        providers: [
+          Provider<SettingProvider>(
+            create: (context) => SettingProvider(widget.sharedPreferences),
+          ),
+          ChangeNotifierProvider<UserProvider>(
+              create: (context) => UserProvider()),
+          ChangeNotifierProvider<HomePageProvider>(
+              create: (context) => HomePageProvider()),
+          ChangeNotifierProvider<CategoryProvider>(
+              create: (context) => CategoryProvider()),
+          ChangeNotifierProvider<ProductDetailProvider>(
+              create: (context) => ProductDetailProvider()),
+          ChangeNotifierProvider<FavoriteProvider>(
+              create: (context) => FavoriteProvider()),
+          ChangeNotifierProvider<OrderProvider>(
+              create: (context) => OrderProvider()),
+          ChangeNotifierProvider<CartProvider>(
+              create: (context) => CartProvider()),
+          ChangeNotifierProvider<ExploreProvider>(
+              create: (context) => ExploreProvider()),
+          ChangeNotifierProvider<ProductProvider>(
+              create: (context) => ProductProvider()),
+          ChangeNotifierProvider<FaqsProvider>(
+              create: (context) => FaqsProvider()),
+          ChangeNotifierProvider<PromoCodeProvider>(
+              create: (context) => PromoCodeProvider()),
+          ChangeNotifierProvider<SystemProvider>(
+              create: (context) => SystemProvider()),
+          ChangeNotifierProvider<ThemeProvider>(
+              create: (context) => ThemeProvider()),
+          ChangeNotifierProvider<ProductListProvider>(
+              create: (context) => ProductListProvider()),
+          ChangeNotifierProvider<AuthenticationProvider>(
+              create: (context) => AuthenticationProvider()),
+          ChangeNotifierProvider<FaQProvider>(
+              create: (context) => FaQProvider()),
+          ChangeNotifierProvider<ReviewGallaryProvider>(
+              create: (context) => ReviewGallaryProvider()),
+          ChangeNotifierProvider<ReviewPreviewProvider>(
+              create: (context) => ReviewPreviewProvider()),
+          ChangeNotifierProvider<UpdateFavProvider>(
+              create: (context) => UpdateFavProvider()),
+          ChangeNotifierProvider<UserTransactionProvider>(
+              create: (context) => UserTransactionProvider()),
+          ChangeNotifierProvider<MyWalletProvider>(
+              create: (context) => MyWalletProvider()),
+          ChangeNotifierProvider<PaymentProvider>(
+              create: (context) => PaymentProvider()),
+          ChangeNotifierProvider<SellerDetailProvider>(
+              create: (context) => SellerDetailProvider()),
+          ChangeNotifierProvider<SearchProvider>(
+              create: (context) => SearchProvider()),
+          ChangeNotifierProvider<PushNotificationProvider>(
+              create: (context) => PushNotificationProvider()),
+          ChangeNotifierProvider<NotificationProvider>(
+              create: (context) => NotificationProvider()),
+          ChangeNotifierProvider<ManageAddrProvider>(
+              create: (context) => ManageAddrProvider()),
+          ChangeNotifierProvider<UpdateOrdProvider>(
+              create: (context) => UpdateOrdProvider()),
+          ChangeNotifierProvider<WriteReviewProvider>(
+              create: (context) => WriteReviewProvider()),
+          ChangeNotifierProvider<AddressProvider>(
+              create: (context) => AddressProvider()),
+          ChangeNotifierProvider<CustomerSupportProvider>(
+              create: (context) => CustomerSupportProvider()),
+          ChangeNotifierProvider<ProductPreviewProvider>(
+              create: (context) => ProductPreviewProvider()),
+          ChangeNotifierProvider<ChatProvider>(
+              create: (context) => ChatProvider()),
+        ],
+        child: MaterialApp(
+          locale: _locale,
+          supportedLocales: const [
+            Locale('en', 'US'),
+            Locale('zh', 'CN'),
+            Locale('es', 'ES'),
+            Locale('hi', 'IN'),
+            Locale('fr', 'FR'),
+            Locale('ar', 'DZ'),
+            Locale('ru', 'RU'),
+            Locale('ja', 'JP'),
+            Locale('de', 'DE'),
+          ],
+          localizationsDelegates: const [
+            DemoLocalization.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          localeResolutionCallback: (locale, supportedLocales) {
+            for (var supportedLocale in supportedLocales) {
+              if (supportedLocale.languageCode == locale!.languageCode &&
+                  supportedLocale.countryCode == locale.countryCode) {
+                return supportedLocale;
+              }
+            }
+            return supportedLocales.first;
+          },
+          title: appName,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: colors.primary_app,
+            ).copyWith(
+              secondary: colors.darkIcon,
+              brightness: Brightness.light,
+            ),
+            canvasColor: Theme.of(context).colorScheme.lightWhite,
+            cardColor: Theme.of(context).colorScheme.white,
+            dialogBackgroundColor: Theme.of(context).colorScheme.white,
+            iconTheme: Theme.of(context).iconTheme.copyWith(
+              color: colors.primary,
+            ),
+            primarySwatch: colors.primary_app,
+            primaryColor: Theme.of(context).colorScheme.lightWhite,
+            fontFamily: 'ubuntu',
+            brightness: Brightness.light,
+            textTheme: TextTheme(
+              titleLarge: TextStyle(
+                color: Theme.of(context).colorScheme.fontColor,
+                fontWeight: FontWeight.w600,
+              ),
+              titleMedium: TextStyle(
+                color: Theme.of(context).colorScheme.fontColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ).apply(
+              bodyColor: Theme.of(context).colorScheme.fontColor,
+            ),
+          ),
+          debugShowCheckedModeBanner: false,
+          initialRoute: '/',
+          routes: {
+            '/': (context) => const Splash(),
+            '/home': (context) => const Dashboard(),
+          },
+          darkTheme: ThemeData(
+            canvasColor: colors.darkColor,
+            cardColor: colors.darkColor2,
+            dialogBackgroundColor: colors.darkColor2,
+            primaryColor: colors.darkColor,
+            textSelectionTheme: TextSelectionThemeData(
+              cursorColor: colors.darkIcon,
+              selectionColor: colors.darkIcon,
+              selectionHandleColor: colors.darkIcon,
+            ),
+            fontFamily: 'ubuntu',
+            brightness: Brightness.dark,
+            hintColor: colors.white10,
+            iconTheme: Theme.of(context).iconTheme.copyWith(
+              color: colors.secondary,
+            ),
+            textTheme: TextTheme(
+              titleLarge: TextStyle(
+                color: Theme.of(context).colorScheme.fontColor,
+                fontWeight: FontWeight.w600,
+              ),
+              titleMedium: TextStyle(
+                color: Theme.of(context).colorScheme.fontColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ).apply(
+              bodyColor: Theme.of(context).colorScheme.fontColor,
+            ),
+            colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: colors.primary_app,
+            ).copyWith(
+              secondary: colors.darkIcon,
+              brightness: Brightness.dark,
+            ),
+            checkboxTheme: CheckboxThemeData(
+              fillColor: MaterialStateProperty.resolveWith<Color?>(
+                      (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.disabled)) {
+                      return null;
+                    }
+                    if (states.contains(MaterialState.selected)) {
+                      return colors.primary;
+                    }
+                    return null;
+                  }),
+            ),
+            radioTheme: RadioThemeData(
+              fillColor: MaterialStateProperty.resolveWith<Color?>(
+                      (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.disabled)) {
+                      return null;
+                    }
+                    if (states.contains(MaterialState.selected)) {
+                      return colors.primary;
+                    }
+                    return null;
+                  }),
+            ),
+            switchTheme: SwitchThemeData(
+              thumbColor: MaterialStateProperty.resolveWith<Color?>(
+                      (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.disabled)) {
+                      return null;
+                    }
+                    if (states.contains(MaterialState.selected)) {
+                      return colors.primary;
+                    }
+                    return null;
+                  }),
+              trackColor: MaterialStateProperty.resolveWith<Color?>(
+                      (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.disabled)) {
+                      return null;
+                    }
+                    if (states.contains(MaterialState.selected)) {
+                      return colors.primary;
+                    }
+                    return null;
+                  }),
+            ),
+          ),
+          themeMode: themeNotifier.getThemeMode(),
+        ),
+      );
+    }
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
