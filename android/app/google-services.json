@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "671204182623",
+    "project_id": "idigital-f15d3",
+    "storage_bucket": "idigital-f15d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:671204182623:android:0a49d1d8cad537d8fd69ea",
+        "android_client_info": {
+          "package_name": "com.coderbox.idigital_costumer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "671204182623-boh35sji6djb5v48fccqvav7rb48k5ts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBw7dt7sUi6Zyw6taYZt3beAxow0g__IjY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671204182623-boh35sji6djb5v48fccqvav7rb48k5ts.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
