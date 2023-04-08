@@ -46,12 +46,12 @@ class DesignConfiguration {
   }
 
   static back() {
-    return const BoxDecoration(
+    return BoxDecoration(
       gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
-        colors: [colors.grad1Color, colors.grad2Color],
-        stops: [0, 1],
+        colors: [ colors.grad2Color,colors.grad1Color.withOpacity(.5)],
+        stops: [0.5, 1],
       ),
     );
   }

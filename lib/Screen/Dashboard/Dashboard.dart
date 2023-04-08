@@ -254,9 +254,10 @@ class _DashboardPageState extends State<Dashboard>
       automaticallyImplyLeading: false,
       backgroundColor: Theme.of(context).colorScheme.lightWhite,
       title: _selBottom == 0
-          ? SvgPicture.asset(
-              DesignConfiguration.setSvgPath('titleicon'),
-              height: 40,
+          ? Image.asset(
+              DesignConfiguration.setPngPath('customer_logo'),
+              height: 100,
+        color: colors.primary,
             )
           : Text(
               title!,

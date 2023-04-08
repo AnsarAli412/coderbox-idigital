@@ -75,6 +75,7 @@ Widget getImages(int index, BuildContext context, List slideList) {
       DesignConfiguration.setPngPath(
         slideList[index].imageUrl,
       ),
+      // color: Color(0xff04ddfe),
     ),
   );
 }

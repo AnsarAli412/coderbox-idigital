@@ -132,6 +132,7 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       key: _scaffoldKey,
       body: WillPopScope(
@@ -196,6 +197,7 @@ class _HomePageState extends State<HomePage>
     user.setUserId(setting.userId);
 
     isNetworkAvail = await isNetworkAvailable();
+    if(!mounted) return;
     if (isNetworkAvail) {
       getSetting();
       context.read<HomePageProvider>().getSliderImages();
@@ -217,6 +219,7 @@ class _HomePageState extends State<HomePage>
   }
 
   void getSetting() {
+    if(!mounted) return;
     CUR_USERID = context.read<SettingProvider>().userId;
     context.read<SystemProvider>().getSystemSettings(userID: CUR_USERID).then(
       (systemConfigData) async {

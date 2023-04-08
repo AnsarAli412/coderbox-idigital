@@ -185,7 +185,7 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
 
   Widget registerTxt() {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(top: 60.0),
+      padding: const EdgeInsetsDirectional.only(top: 20.0),
       child: Align(
         alignment: Alignment.topLeft,
         child: Text(
@@ -466,7 +466,7 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
             child: Text(
               getTranslated(context, 'LOG_IN_LBL')!,
               style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: colors.secondary,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'ubuntu',
                   ),
@@ -585,14 +585,20 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
   Widget getLogo() {
     return Container(
       alignment: Alignment.center,
-      padding: const EdgeInsets.only(top: 60),
-      child: SvgPicture.asset(
-        DesignConfiguration.setSvgPath('homelogo'),
-        alignment: Alignment.center,
-        height: 90,
-        width: 90,
-        fit: BoxFit.contain,
+      padding: const EdgeInsets.only(top: 0),
+      child: Image.asset(
+        DesignConfiguration.setPngPath('customer_logo'),
+        height: 200,
+        width: 200,
+        color: colors.grad1Color,
       ),
+      // child: SvgPicture.asset(
+      //   DesignConfiguration.setSvgPath('homelogo'),
+      //   alignment: Alignment.center,
+      //   height: 90,
+      //   width: 90,
+      //   fit: BoxFit.contain,
+      // ),
     );
   }
 }
