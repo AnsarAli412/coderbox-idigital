@@ -35,17 +35,17 @@ class _GettingStartedScreenState extends State<IntroSlider>
           () {
             slideList = [
               Slide(
-                imageUrl: 'introimage_a',
+                imageUrl: 'intro_search',
                 title: getTranslated(context, 'TITLE1_LBL'),
                 description: getTranslated(context, 'DISCRIPTION1'),
               ),
               Slide(
-                imageUrl: 'introimage_b',
+                imageUrl: 'intro_shopping',
                 title: getTranslated(context, 'TITLE2_LBL'),
                 description: getTranslated(context, 'DISCRIPTION2'),
               ),
               Slide(
-                imageUrl: 'introimage_c',
+                imageUrl: 'intro_final',
                 title: getTranslated(context, 'TITLE3_LBL'),
                 description: getTranslated(context, 'DISCRIPTION3'),
               ),

@@ -546,13 +546,19 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
     return Container(
       alignment: Alignment.center,
       padding: const EdgeInsets.only(top: 60),
-      child: SvgPicture.asset(
-        DesignConfiguration.setSvgPath('homelogo'),
-        alignment: Alignment.center,
-        height: 90,
-        width: 90,
-        fit: BoxFit.contain,
+      child: Image.asset(
+        DesignConfiguration.setPngPath('customer_logo'),
+        height: 200,
+        width: 200,
+        color: colors.grad1Color,
       ),
+      // child: SvgPicture.asset(
+      //   DesignConfiguration.setSvgPath('homelogo'),
+      //   alignment: Alignment.center,
+      //   height: 90,
+      //   width: 90,
+      //   fit: BoxFit.contain,
+      // ),
     );
   }
 

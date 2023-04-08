@@ -17,14 +17,14 @@ extension colors on ColorScheme {
     },
   );
 
-  static const Color primary = Color(0xffFC6A57);
-  static const Color secondary = Color(0xffFDC994);
+  static const Color secondary = Color(0xff117396);
+  static const Color primary = Color(0xff04ddfe);
 
   Color get btnColor => brightness == Brightness.dark ? whiteTemp : primary;
 
   Color get changeablePrimary => brightness == Brightness.dark
-      ? const Color(0xffFDC994)
-      : const Color(0xffFC6A57);
+      ? const Color(0xff04ddfe)
+      : const Color(0xff117396);
 
   Color get lightWhite =>
       brightness == Brightness.dark ? darkColor : const Color(0xffEEF2F9);
@@ -47,8 +47,8 @@ extension colors on ColorScheme {
 
   static Color darkIcon = const Color(0xff9B9B9B);
 
-  static const Color grad1Color = Color(0xffFFBD69);
-  static const Color grad2Color = Color(0xffFF6363);
+  static const Color grad1Color = Color(0xff04ddfe);
+  static const Color grad2Color = Color(0xff117396);
   static const Color lightWhite2 = Color(0xffEEF2F3);
 
   static const Color yellow = Color(0xfffdd901);

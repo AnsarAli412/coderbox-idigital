@@ -651,7 +651,7 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
             child: Text(
               getTranslated(context, 'FORGOT_PASSWORD_LBL')!,
               style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: colors.secondary,
                     fontWeight: FontWeight.bold,
                     fontSize: textFontSize13,
                     fontFamily: 'ubuntu',
@@ -690,7 +690,7 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
             child: Text(
               getTranslated(context, 'SIGN_UP_LBL')!,
               style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: colors.secondary,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'ubuntu',
                   ),
@@ -770,13 +770,19 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
     return Container(
       alignment: Alignment.center,
       padding: const EdgeInsets.only(top: 60),
-      child: SvgPicture.asset(
-        DesignConfiguration.setSvgPath('homelogo'),
-        alignment: Alignment.center,
-        height: 90,
-        width: 90,
-        fit: BoxFit.contain,
-      ),
+        child:Image.asset(
+          DesignConfiguration.setPngPath('customer_logo'),
+          height: 150,
+          width: 200,
+          color: colors.grad1Color,
+        )
+      // child: SvgPicture.asset(
+      //   DesignConfiguration.setSvgPath('homelogo'),
+      //   alignment: Alignment.center,
+      //   height: 90,
+      //   width: 90,
+      //   fit: BoxFit.contain,
+      // ),
     );
   }
 }

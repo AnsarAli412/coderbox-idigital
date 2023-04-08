@@ -25,18 +25,24 @@ class _SignInUpAccState extends State<SignInUpAcc> {
   _subLogo() {
     return Padding(
       padding: EdgeInsetsDirectional.only(top: deviceHeight! * 0.15),
-      child: SvgPicture.asset(
-        DesignConfiguration.setSvgPath('homelogo'),
-        height: 90,
-        width: 90,
-        fit: BoxFit.contain,
+      child: Image.asset(
+        DesignConfiguration.setPngPath('customer_logo'),
+        height: 200,
+        width: 200,
+        color: colors.grad1Color,
       ),
+      // child: SvgPicture.asset(
+      //   DesignConfiguration.setSvgPath('homelogo'),
+      //   height: 90,
+      //   width: 90,
+      //   fit: BoxFit.contain,
+      // ),
     );
   }
 
   welcomeEshopTxt() {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(top: 30.0),
+      padding: const EdgeInsetsDirectional.only(top: 0.0),
       child: Text(
         getTranslated(context, 'WELCOME_ESHOP')!,
         style: Theme.of(context).textTheme.titleMedium!.copyWith(

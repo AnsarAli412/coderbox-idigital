@@ -26,6 +26,7 @@ class _SplashScreen extends State<Splash> with TickerProviderStateMixin {
     vsync: this,
     duration: const Duration(milliseconds: 200),
   );
+
   @override
   void initState() {
     SystemChromeSettings.setSystemButtomNavigationBarithTopAndButtom();
@@ -63,11 +64,16 @@ class _SplashScreen extends State<Splash> with TickerProviderStateMixin {
             height: double.infinity,
             decoration: DesignConfiguration.back(),
             child: Center(
-              child: SvgPicture.asset(
-                DesignConfiguration.setSvgPath('splashlogo'),
-                width: 150,
-                height: 150,
+              child: Image.asset(
+                DesignConfiguration.setPngPath('customer_logo'),
+                width: 400,
+                height: 400,
               ),
+              // child: SvgPicture.asset(
+              //   DesignConfiguration.setSvgPath('customer_logo'),
+              //   width: 150,
+              //   height: 150,
+              // ),
             ),
           ),
           Image.asset(
@@ -75,6 +81,7 @@ class _SplashScreen extends State<Splash> with TickerProviderStateMixin {
             fit: BoxFit.fill,
             width: double.infinity,
             height: double.infinity,
+            color: Colors.white,
           ),
         ],
       ),
@@ -82,7 +89,7 @@ class _SplashScreen extends State<Splash> with TickerProviderStateMixin {
   }
 
   startTime() async {
-    var duration = const Duration(seconds: 2);
+    var duration = const Duration(seconds: 3);
     return Timer(duration, navigationPage);
   }
 
