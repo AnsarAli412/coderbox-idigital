@@ -1347,7 +1347,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                                           context,
                                                           CupertinoPageRoute(
                                                             builder: (context) =>
-                                                                ManageAddress(
+                                                                const ManageAddress(
                                                               home: false,
                                                             ),
                                                           ),

@@ -63,7 +63,7 @@ const double circularBorderRadius100 = 100;
 //Token ExpireTime in minutes & issuer name
 const int tokenExpireTime = 5;
 
-const String issuerName = 'eshop';
+const String issuerName = 'idigital';
 
 //General Error Message
 const String errorMesaage = 'Something went wrong, Error : ';
@@ -75,5 +75,5 @@ const String bankDetail =
 //Api class instance
 ApiBaseHelper apiBaseHelper = ApiBaseHelper();
 
-const String baseUrl = 'https//:coderbox-emporium.com/';
-const String jwtKey = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCnbb/62EDc4Qi4QDDeKDkWBvRxgTXMQH6MUtRKbbR3q1oIyL49cVBlYpzH5AtfFXyqQEElhLgeyFJ1Q/DqUWlaBAtNFPn4qbq+jbti1HoNf3z+X1vPi0IC24d19h6jmlFMt11GrbYZSpeR+IDnzSFRmaQKawCi6qgNzqoC8zN2lsDoUIYSK1Zz+h0d601fwyH2YDwi+pP3D5PPwJx+clXMViiD95pAKwHUqvuAdwUqWa4ZwuCh4HnTN6j/WpvYwbq/WvHYtuw9lW+zd0Das5KerB0pr26p3ikxJ/a/k0PqNlu2ixWQwGfJFCNOypbsQJ5Hr80a8JpaY/xkGSA30YUXXeZ8BtF7C1ir+VUIP5CPElbVNEeglSdRBq9D1YcZFGRSI3tXf1ndfJjU8SIeHf9dggnHVSlzWe76o+I5oDqdhhpSUXKKExSLWNS9GopoDmeLCyHUrhLKcBi27FMM3FcfGI6tAkmWQRTvNOzAtpHJNOgVLJ0z+Qpfm53/6T8f7MU= abhi@Abhisheks-MacBook-Pro.local';
+const String baseUrl = 'https://coderbox-emporium.com/ecommerce/app/v1/api/';
+const String jwtKey = '';
